@@ -1,0 +1,38 @@
+body {
+  margin: auto;
+  padding: 50px;
+  max-width: 1400px;
+}
+
+a {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+table button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: rgb(174, 211, 224);
+}
+
+.loading {
+  display: none;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th {
+  border: 1px solid black;
+}
+
+.table-page-link {
+  display: inline-block;
+  padding: 10px;
+  border-bottom: 1px;
+  color: black;
+  font-size: 20px;
+}

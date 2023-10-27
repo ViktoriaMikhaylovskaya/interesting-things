@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/table-styles.css" />
+    <title>Страница для задания 24</title>
+  </head>
+  <body>
+    <a href="index.html">Вернуться на главную.</a>
+    <div class="loading">Loading...</div>
+    <table>
+      <caption>
+        Таблица с данными
+      </caption>
+      <thead>
+        <tr>
+          <th>
+            <button data-sort-field="fname" data-method="default">
+              first name
+            </button>
+          </th>
+          <th>
+            <button data-sort-field="lname" data-method="default">
+              last name
+            </button>
+          </th>
+          <th>
+            <button data-sort-field="address" data-method="default">
+              address
+            </button>
+          </th>
+          <th>
+            <button data-sort-field="tel" data-method="default">tel</button>
+          </th>
+          <th>
+            <button data-sort-field="city" data-method="default">city</button>
+          </th>
+          <th>
+            <button data-sort-field="state" data-method="default">state</button>
+          </th>
+          <th>
+            <button data-sort-field="zip" data-method="default">zip</button>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="table"></tbody>
+    </table>
+
+    <button class="back-button" disabled>Назад</button>
+    <button class="forward-button">Вперед</button>
+    <script src="src/js/task-24.js" async></script>
+  </body>
+</html>

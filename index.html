@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Хардкорный JS</title>
+  </head>
+  <body>
+    <h1>Решения задач</h1>
+
+    <div>
+      <h3>Задание 17</h3>
+      <div id="map"></div>
+    </div>
+
+    <div class="vk">
+      <h3>Задание 19</h3>
+      <ul class="vk__posts">
+        <!-- <li>
+          <img src=""/>
+        </li> -->
+      </ul>
+
+      <template id="post_template">
+        <li>
+          <p></p>
+          <div>
+            <img />
+          </div>
+        </li>
+      </template>
+    </div>
+
+    <form class="password-form form">
+      <h3>Задание 23</h3>
+      <div>
+        <label>
+          Пароль:
+          <!-- type="password" -->
+          <input class="form__input" type="text" />
+        </label>
+        <div class="form__evaluation"></div>
+      </div>
+      <button class="form__save-button" type="submit" disabled>
+        Сохранить
+      </button>
+      <button class="form_reset-button" type="reset">Очистить</button>
+    </form>
+
+    <a class="table-page-link" href="table.html">Перейти к заданию 24.</a>
+
+    <div class="task25">
+      <h3>Задание 25</h3>
+    </div>
+
+    <div class="animation-wrapper">
+      <div class="animation">27</div>
+    </div>
+
+    <div class="wrapper-for-template">
+      <h3>Задание 28</h3>
+    </div>
+
+    <template id="template">
+      <p>Этот параграф взят из шаблона.</p>
+    </template>
+
+    <form class="form2">
+      <h3>Задание 29</h3>
+      <input
+        class="input-name"
+        name="name"
+        placeholder="Введите Имя"
+        type="text"
+        required
+      />
+      <input
+        class="input-surname"
+        name="surname"
+        placeholder="Введите фамилию"
+        type="text"
+        required
+      />
+      <button type="submit">Сохранить</button>
+    </form>
+
+    <script type="module" src="/src/main.js"></script>
+    <!-- task 17 -->
+    <script
+      src="https://api-maps.yandex.ru/2.1/?apikey=74c49c88-930f-456c-9c21-7c9f7a19b611&lang=ru_RU"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      ymaps.ready(init);
+      function init() {
+        var myMap = new ymaps.Map("map", {
+          center: [55.76, 37.64],
+          zoom: 14,
+        });
+      }
+    </script>
+  </body>
+</html>
