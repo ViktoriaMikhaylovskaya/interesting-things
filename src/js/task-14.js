@@ -15,4 +15,4 @@ const getImgInfo = async (imgUrl) => { // async всегда возвращае�
     }
 }
 
-getImgInfo(url1);
+getImgInfo(url1); // Картинку можно посмотреть во вкладке Network
