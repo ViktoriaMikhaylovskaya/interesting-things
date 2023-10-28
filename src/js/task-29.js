@@ -8,7 +8,7 @@ const formNode = document.querySelector('.form2');
 const getFormData = (e, formNode) => { 
     e.preventDefault();
     const formData = new FormData(formNode); // создаём объект FormData, передаём в него элемент формы
-    // теперь можно извлечь данные
+    // извлекаем данные
     const name = formData.get('name');
     const surname = formData.get('surname');
 
@@ -17,6 +17,7 @@ const getFormData = (e, formNode) => {
 // or
 const getData = (e) => { 
     e.preventDefault();
+    // получаем данные из инпутов
     const name = formNode.querySelector('.input-name').value;
     const surname = formNode.querySelector('.input-surname').value;
 

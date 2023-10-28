@@ -20,6 +20,7 @@ const createElement = (parentNode, content) => { // создание ячейк�
     parentNode.appendChild(element);
 }
 
+// Создание и добавление элементов в HTML. Передаем уже сортированные данные
 const createElements = (data) => { 
     const tableNode = document.querySelector('.table');
     tableNode.innerHTML = '';
@@ -39,22 +40,25 @@ const createElements = (data) => {
     }
 }
 
-const getData = async () => { 
+// Получение данных
+const getData = async () => {
     try {
-        loadingNode.style.display = 'block';
+        loadingNode.style.display = 'block'; // лоадинг, чтобы пользователь понимал, что идет загрузка
         tableNode.style.opacity = '0';
 
         const response = await fetch(link);
         const data = await response.json();
         return data;
     } catch (error) {
-        throw new Error(error);
+        console.log('Задание 24. Произошла ошибка при загрузке данных');
+        throw error;
     } finally { 
         loadingNode.style.display = 'none';
         tableNode.style.opacity = '1';
     }
 }
 
+// Сортировка данных в зависимости от того, на какую колонку нажали и какой метод там уже был (default | asc | desc)
 const prepareDataForTable = async (sortColumn, sortMethod) => {
     const data = await getData();
     
@@ -106,6 +110,8 @@ forwardButton.addEventListener('click', () => {
     backButton.disabled = false;
 });
 
+
+// Отслеживаем клик по колонке, достаем ее название и метод сортировки, который потом меняем на новый
 tableNode.addEventListener('click', (e) => {
     const elementNode = e.target;
     if (!!elementNode.getAttribute('data-sort-field')) { 

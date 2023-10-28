@@ -15,25 +15,25 @@ const regForSymbols = /[-().^+@_"?><{};:|%*$#!~=&]/;
 
 const passwordAnalisys = (e) => {
     const inputValue = e.target.value;
-    let percent = 0;
+    let percent = 0; // сложность пароля в процентах
 
-    if (regForNumbers.test(inputValue)) {
+    if (regForNumbers.test(inputValue)) { // проверка на наличие цифр
         percent += 25;
     }
 
-    if (regForBigLetters.test(inputValue)) {
+    if (regForBigLetters.test(inputValue)) { // проверка на наличие букв в верхнем регистре
         percent += 25;
     }
 
-    if (regForSmallLetters.test(inputValue)) {
+    if (regForSmallLetters.test(inputValue)) { // проверка на наличие букв в нижнем регистре
         percent += 25;
     }
 
-    if (regForSymbols.test(inputValue)) {
+    if (regForSymbols.test(inputValue)) { // проверка на наличие символов
         percent += 25;
     }
 
-    switch (percent) { 
+    switch (percent) { // визуально выделяем сложность введенного пароля в зависимости от %
         case 25:
             evaluationPasswordNode.style.width = '25%';
             evaluationPasswordNode.style.backgroundColor = 'red';
@@ -62,9 +62,9 @@ const passwordAnalisys = (e) => {
     }
 };
 
-inputNode.addEventListener('input', passwordAnalisys);
+inputNode.addEventListener('input', passwordAnalisys); // обработчик, срабатывает при изменении в поле ввода
 
-resetButton.addEventListener('click', () => { 
+resetButton.addEventListener('click', () => { // обработчик для сбрасывания стилей при нажатии на кнопку "Очистить"
     evaluationPasswordNode.style.width = '0%';
     evaluationPasswordNode.style.backgroundColor = 'transparent';
 });

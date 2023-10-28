@@ -2,17 +2,21 @@
 // Задача: Создать и добавить стиль для элемента: Напишите функцию, которая создает новый элемент,
 // добавляет его в DOM и устанавливает для него стиль с помощью CSS.
 
-const createElement = () => { 
-    const parentNode = document.querySelector('.task25');
+const createParagraph = (text, parentNode) => { 
+    // Создаем paragraph и заполняем переданным контентом
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
 
-    const title = document.createElement('p');
-    title.textContent = 'Элемент создан через JS';
+    // Указываем нужные стили
+    paragraph.style.border = '1px dashed green';
+    paragraph.style.width = 'max-content';
+    paragraph.style.padding = '10px';
 
-    title.style.border = '1px dashed green';
-    title.style.width = 'max-content';
-    title.style.padding = '10px';
-
-    parentNode.appendChild(title);
+    // Вставляем созданный элемент paragraph в переданную parentNode
+    parentNode.appendChild(paragraph);
 }
 
-createElement();
+
+// Находим ноду, куда добавим новый элемент
+const parentNode = document.querySelector('.task25');
+createParagraph('Элемент создан через JS', parentNode);
