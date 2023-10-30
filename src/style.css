@@ -11,7 +11,7 @@ body {
 
 .vk {
   width: 800px;
-  height: 700px;
+  height: 800px;
   padding: 20px;
   padding-bottom: 50px;
   margin: 20px 0;
@@ -28,15 +28,6 @@ body {
   flex-direction: column;
   gap: 20px;
   position: relative;
-}
-
-.vk__posts::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 300px;
-  width: 20px;
 }
 
 .vk li {

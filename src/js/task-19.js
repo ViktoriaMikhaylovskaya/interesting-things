@@ -8,42 +8,29 @@
 // При переполнении localStorage, данные, загруженные последними должны вытеснять данные загруженные первыми.
 
 const access_token = '0d59f4db0d59f4db0d59f4db2e0e4ffd9800d590d59f4db686a475e9cc18a0a20b2636a';
-let count = 0;
+let count = 10;
 
-const createItemNode = (item) => { 
-  const photo = item.photoInfo.photo;
-  const listNode = document.querySelector('.vk__posts');
+const postObserver = new IntersectionObserver((entries, observer) => { 
+  entries.forEach((entry) => { 
+    if (entry.isIntersecting) { 
+      observer.unobserve(entry.target);
+      fetchPosts(count);
+    }
+  });
 
-  const li = document.createElement('li');
+  count += 10;
+}, { 
+  root: document.querySelector('.vk__posts'),
+});
 
-  if (!!item.text) { 
-    const text = document.createElement('p');
-    text.textContent = item.text;
-    li.appendChild(text);
-  }
-
-  if (photo) { 
-    const div = document.createElement('div');
-    const img = document.createElement('img');
-    img.src = photo.url;
-    img.style.width = photo.width + 'px';
-    img.style.height = photo.height + 'px';
-
-    div.append(img);
-
-    li.appendChild(div);
-  }
-
-  listNode.append(li);
-}
-
-const getPosts = async () => { 
+async function getPosts(count) { 
   try {
-    const response = await fetch(`https://api.vk.com/method/wall.get?owner_id=-139923997&access_token=${access_token}&v=5.131&count=10`);
+    const response = await fetch(`https://api.vk.com/method/wall.get?owner_id=-139923997&access_token=${access_token}&v=5.131&count=${count}`);
     const data = await response.json();
-    count = data.response.count;
 
-    const newData = data.response.items.reduce((acc, el) => { 
+    const newData = data.response.items
+      .slice(count - 10)
+      .reduce((acc, el) => { 
       const attachments = el.attachments.find((el) => el.type === 'photo') || undefined;
       const photoInfo = !!attachments ? attachments.photo.sizes.find((el) => el.type === 'x') : undefined;
 
@@ -66,12 +53,13 @@ const getPosts = async () => {
   }
 }
 
-async function fetchPosts() {
-  const response = await getPosts();
+async function fetchPosts(count) {
+  const response = await getPosts(count);
   appendPost(response);
+  return response;
 }
 
-fetchPosts();
+fetchPosts(count);
 
 function composePost(postData) {
   // Если ничего не передано, ничего не возвращаем:
@@ -107,17 +95,20 @@ function composePost(postData) {
 
 function appendPost(postData) {
   // Если данных нет, ничего не делаем:
-  if (!postData) return
+  if (!postData) return;
 
   // Храним ссылку на элемент, внутрь которого
   // добавим новые элементы-свиты:
-  const main = document.querySelector('.vk__posts')
+  const main = document.querySelector('.vk__posts');
 
   // Используем функцию composePost,
   // она превращает данные в HTML-элемент:
   for (let i = 0; i < postData.length; i++) { 
-    const postNode = composePost(postData[i]) 
+    const postNode = composePost(postData[i]);
     // Добавляем созданный элемент в main:
-    main.append(postNode)
+    main.append(postNode);
   }
+
+  const postCollection = document.querySelectorAll('.vk__posts li');
+  postObserver.observe(postCollection[postCollection.length - 3]);
 }
