@@ -16,7 +16,7 @@ import './js/task-15';
 import './js/task-16';
 
 import './js/task-18';
-// import './js/task-19'; // - vk
+import './js/task-19';
 import './js/task-20';
 import './js/task-21';
 import './js/task-23';
